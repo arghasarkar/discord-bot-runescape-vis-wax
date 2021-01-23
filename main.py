@@ -1,9 +1,10 @@
+import os
 import json
 
 from nacl.signing import VerifyKey
 from nacl.exceptions import BadSignatureError
 
-PUBLIC_KEY = '<your public key here>'  # found on Discord Application -> General Information page
+PUBLIC_KEY = os.environ["PUBLIC_KEY"] # found on Discord Application -> General Information page
 PING_PONG = {"type": 1}
 RESPONSE_TYPES = {
     "PONG": 1,
@@ -54,5 +55,4 @@ def lambda_handler(event, context):
         }
     }
 
-
-print("Hello")
+print(PUBLIC_KEY)
