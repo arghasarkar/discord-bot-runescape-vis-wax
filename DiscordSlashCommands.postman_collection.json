@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "426addf0-c4a1-4486-a386-8f6225be3825",
+		"name": "DiscordSlashCommands",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get commands",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bot {{TOKEN}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{PUBLIC_KEY}}",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://discord.com/api/v8/applications/{{CLIENT_ID}}/commands",
+					"protocol": "https",
+					"host": [
+						"discord",
+						"com"
+					],
+					"path": [
+						"api",
+						"v8",
+						"applications",
+						"{{CLIENT_ID}}",
+						"commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new commands",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bot {{TOKEN}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{PUBLIC_KEY}}",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"viswax\",\r\n    \"description\": \"Gets the Vis wax runes for the day\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://discord.com/api/v8/applications/{{CLIENT_ID}}/commands",
+					"protocol": "https",
+					"host": [
+						"discord",
+						"com"
+					],
+					"path": [
+						"api",
+						"v8",
+						"applications",
+						"{{CLIENT_ID}}",
+						"commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a command",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bot {{TOKEN}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{PUBLIC_KEY}}",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://discord.com/api/v8/applications/{{CLIENT_ID}}/commands/802669997104562176",
+					"protocol": "https",
+					"host": [
+						"discord",
+						"com"
+					],
+					"path": [
+						"api",
+						"v8",
+						"applications",
+						"{{CLIENT_ID}}",
+						"commands",
+						"802669997104562176"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
