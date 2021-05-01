@@ -43,9 +43,12 @@ class VisWax:
         if resp.ok:
             self.resp = resp
             print("A004: Response is ok")
-            print(str(resp.text))
+            # print(str(resp.text))
         else:
             print("A005: Something went wrong.")
+
+        print("A023: Response code for response")
+        print(str(resp.status_code))
 
         print(str(resp.headers))
         # print(str(resp.text))
