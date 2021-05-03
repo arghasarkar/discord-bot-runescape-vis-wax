@@ -1,13 +1,6 @@
 import os
-import json
-
-import urllib.parse
-import urllib.request
-import ssl
-import os
 
 from nacl.signing import VerifyKey
-from nacl.exceptions import BadSignatureError
 
 from VisWax import VisWax
 
