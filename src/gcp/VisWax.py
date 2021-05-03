@@ -55,7 +55,9 @@ class VisWax:
             self.__parse__webpage__()
 
             if speech_format:
-                return self.__speechify__()
+                return {
+                    "data": self.__speechify__()
+                }
             else:
                 return self.result
 

@@ -1,3 +1,4 @@
+import json
 import os
 
 import requests
@@ -7,6 +8,7 @@ try:
 
     PUBLIC_KEY = os.environ["PUBLIC_KEY"]  # found on Discord Application -> General Information page
     GCP_VISWAX_URL = os.environ["GCP_URL"]
+    print(f"GCP URL: {GCP_VISWAX_URL}")
 
 except Exception as e:
     print("Error ")
@@ -54,12 +56,14 @@ def lambda_handler(event, context):
     try:
 
         viswax_results = requests.get(GCP_VISWAX_URL)
+        viswax = json.loads(viswax_results.text)["data"]
+        print(f"viswax_results: {viswax_results.text}")
 
         return {
             "type": RESPONSE_TYPES['MESSAGE_WITH_SOURCE'],
             "data": {
                 "tts": False,
-                "content": viswax_results,
+                "content": viswax,
                 "embeds": [],
                 "allowed_mentions": []
             }
