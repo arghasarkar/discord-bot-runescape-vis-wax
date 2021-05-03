@@ -1,4 +1,4 @@
-from src.aws.VisWax import VisWax
+from src.gcp.VisWax import VisWax
 
 
 v = VisWax()

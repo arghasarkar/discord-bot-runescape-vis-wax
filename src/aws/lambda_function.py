@@ -1,10 +1,15 @@
 import os
 
+import requests
 from nacl.signing import VerifyKey
 
-from VisWax import VisWax
+try:
 
-PUBLIC_KEY = os.environ["PUBLIC_KEY"]  # found on Discord Application -> General Information page
+    PUBLIC_KEY = os.environ["PUBLIC_KEY"]  # found on Discord Application -> General Information page
+    GCP_VISWAX_URL = os.environ["GCP_URL"]
+
+except Exception as e:
+    print("Error ")
 
 PING_PONG = {"type": 1}
 RESPONSE_TYPES = {
@@ -38,6 +43,7 @@ def lambda_handler(event, context):
     try:
         verify_signature(event)
     except Exception as e:
+        print("Unauthorized signature")
         raise Exception(f"[UNAUTHORIZED] Invalid request signature: {e}")
 
     # Check if message is a ping
@@ -45,15 +51,20 @@ def lambda_handler(event, context):
     if ping_pong(body):
         return PING_PONG
 
-    v = VisWax()
-    viswax_combo_result = v.get_viswax_combo(True)
+    try:
 
-    return {
-        "type": RESPONSE_TYPES['MESSAGE_WITH_SOURCE'],
-        "data": {
-            "tts": False,
-            "content": viswax_combo_result,
-            "embeds": [],
-            "allowed_mentions": []
+        viswax_results = requests.get(GCP_VISWAX_URL)
+
+        return {
+            "type": RESPONSE_TYPES['MESSAGE_WITH_SOURCE'],
+            "data": {
+                "tts": False,
+                "content": viswax_results,
+                "embeds": [],
+                "allowed_mentions": []
+            }
         }
-    }
+
+    except Exception as e:
+        print(e.with_traceback())
+        return "Exception trying to load data from GCP"
